@@ -50,5 +50,6 @@ Thumbs.db
 !gradle/wrapper/gradle-wrapper.jar
 
 # Environment
+application.yml
 application-*.yml
 .env

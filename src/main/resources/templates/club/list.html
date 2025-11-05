@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>동호회 목록 | HappyClub</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: appHeader"></div>
+
+<section class="container pagehead">
+    <h1>사내 동호회</h1>
+    <p>운영 중인 클럽들을 살펴보세요.</p>
+</section>
+
+<main class="container" style="padding-bottom:56px">
+    <!-- 데이터 없을 때 -->
+    <div th:if="${#lists.isEmpty(clubs)}" class="empty">
+        <svg width="56" height="56" viewBox="0 0 24 24" style="opacity:.7">
+            <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <p><b>등록된 동호회가 없습니다.</b></p>
+        <p>지금 첫 번째 클럽을 만들어보세요.</p>
+        <div style="margin-top:16px">
+            <a th:href="@{/clubs/new}" class="btn btn--brand">+ 새 클럽</a>
+        </div>
+    </div>
+
+    <!-- 카드 그리드 -->
+    <div th:if="${!#lists.isEmpty(clubs)}" class="grid grid--cards">
+        <article th:each="c : ${clubs}" class="card">
+            <div class="card__hero"></div>
+            <div class="card__body">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+                    <h3 class="card__title" th:text="${c.clubName}">동호회 이름</h3>
+                    <span class="badge">ACTIVE</span>
+                </div>
+                <div class="card__meta" th:text="${c.managerName}">매니저 이름</div>
+                <div class="card__date" th:text="${#temporals.format(c.createdDate, 'yyyy.MM.dd')}">2025.11.04</div>
+            </div>
+            <div class="card__foot">
+                <a th:href="@{/clubs/{id}(id=${c.clubId})}" class="link" style="color:var(--brand); font-weight:700">자세히 보기 →</a>
+                <span style="font-size:11px; color:var(--ink-400)">#<span th:text="${c.clubId}">1</span></span>
+            </div>
+        </article>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: appFooter"></div>
+</body>
+</html>

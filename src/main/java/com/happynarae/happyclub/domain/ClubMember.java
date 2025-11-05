@@ -1,6 +1,5 @@
 package com.happynarae.happyclub.domain;
 
-import com.happynarae.happyclub.web.JoinStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

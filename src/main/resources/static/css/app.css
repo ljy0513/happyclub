@@ -1,0 +1,83 @@
+/* app.css — HappyClub minimal UI kit (no CDN) */
+:root{
+    --brand:#2563EB; --brand-700:#1D4ED8;
+    --accent:#0EA5E9;
+    --ink:#0F172A; --ink-600:#475569; --ink-400:#94A3B8;
+    --bg:#F1F5F9; --card:#FFFFFF; --border:#E2E8F0; --ok:#10B981; --ok-50:#ECFDF5;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0; font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:var(--ink); background:var(--bg);
+}
+
+/* Layout */
+.container{max-width:1200px; margin:0 auto; padding:0 24px}
+.header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(255,255,255,.92); backdrop-filter:saturate(180%) blur(6px);
+    border-bottom:1px solid var(--border);
+}
+.header__bar{display:flex; align-items:center; justify-content:space-between; padding:16px 0}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.brand__logo{width:32px; height:32px; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--accent))}
+.brand__name{font-weight:800; color:#0B1220; letter-spacing:-.2px}
+.nav{display:flex; gap:8px; align-items:center}
+a.link{color:var(--ink-600); text-decoration:none; padding:8px 12px; border-radius:8px}
+a.link:hover{color:var(--ink)}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:8px 14px; border-radius:10px; border:1px solid transparent; text-decoration:none; font-weight:600; cursor:pointer}
+.btn--brand{background:var(--brand); color:#fff}
+.btn--brand:hover{background:var(--brand-700)}
+.btn--ghost{background:#F8FAFC; color:var(--ink); border-color:var(--border)}
+.btn--ghost:hover{background:#EEF2F7}
+
+/* Sections */
+.pagehead{padding:40px 0 20px}
+.pagehead h1{margin:0; font-size:22px; font-weight:800; letter-spacing:-.2px}
+.pagehead p{margin:6px 0 0; color:var(--ink-600)}
+
+/* Cards & Grid */
+.grid{display:grid; gap:16px}
+.grid--cards{grid-template-columns:repeat(1,1fr)}
+@media (min-width:640px){.grid--cards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:992px){.grid--cards{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1280px){.grid--cards{grid-template-columns:repeat(4,1fr)}}
+
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.card:hover{box-shadow:0 10px 24px rgba(15,23,42,.08); transform:translateY(-1px); transition:.18s}
+.card__hero{height:110px; background:linear-gradient(135deg,#E6F0FF,#E9FBFF)}
+.card__body{padding:16px}
+.card__title{margin:0; font-size:15px; font-weight:800}
+.card__meta{margin-top:4px; font-size:13px; color:var(--ink-600)}
+.card__date{margin-top:2px; font-size:12px; color:var(--ink-400)}
+.card__foot{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-top:1px solid var(--border); background:#F8FAFC}
+.badge{font-size:11px; padding:4px 8px; border-radius:999px; font-weight:700; background:var(--ok-50); color:var(--ok)}
+
+/* Empty state */
+.empty{background:#fff; border:1px solid var(--border); border-radius:16px; padding:48px; text-align:center}
+.empty p{margin:6px 0; color:var(--ink-600)}
+
+/* Detail */
+.kv{display:grid; grid-template-columns:1fr; gap:16px; margin-top:16px}
+@media (min-width:640px){.kv{grid-template-columns:1fr 1fr}}
+.kv dt{font-size:13px; color:var(--ink-600)}
+.kv dd{margin:4px 0 0; font-weight:700}
+
+/* Forms */
+.form{margin-top:24px}
+.form .row{margin-bottom:16px}
+.label{display:block; font-weight:700; color:var(--ink); margin-bottom:6px}
+.input, .textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:#fff;
+    outline:0; font:inherit;
+}
+.input:focus, .textarea:focus{border-color:var(--brand); box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+.err{margin-top:6px; font-size:12px; color:#DC2626}
+
+/* Footer */
+.footer{border-top:1px solid var(--border); background:#fff}
+.footer__inner{padding:18px 0; text-align:center; color:var(--ink-400); font-size:12px}

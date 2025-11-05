@@ -1,0 +1,16 @@
+<!— fragments/header.html —>
+<th:block th:fragment="appHeader">
+    <link rel="stylesheet" href="/css/app.css"/>
+    <header class="header">
+        <div class="container header__bar">
+            <a th:href="@{/}" class="brand">
+                <div class="brand__logo"></div>
+                <span class="brand__name">HappyClub</span>
+            </a>
+            <nav class="nav">
+                <a th:href="@{/clubs}" class="link">동호회 목록</a>
+                <a th:href="@{/clubs/new}" class="btn btn--brand">+ 새 클럽</a>
+            </nav>
+        </div>
+    </header>
+</th:block>

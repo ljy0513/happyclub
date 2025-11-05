@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${club.clubName} + ' | HappyClub'">클럽 상세</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: appHeader"></div>
+
+<main class="container" style="padding:40px 0 56px">
+    <div class="card" style="padding:20px">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px">
+            <div>
+                <h1 style="margin:0; font-size:22px; font-weight:800" th:text="${club.clubName}">동호회명</h1>
+                <div style="margin-top:4px; color:var(--ink-600)">클럽 상세 정보</div>
+            </div>
+            <div>
+                <span th:if="${club.active}" class="badge">활성</span>
+                <span th:unless="${club.active}" class="badge" style="background:#F1F5F9; color:#64748B">비활성</span>
+            </div>
+        </div>
+
+        <dl class="kv">
+            <div>
+                <dt>클럽 ID</dt>
+                <dd th:text="${club.clubId}">1</dd>
+            </div>
+            <div>
+                <dt>매니저</dt>
+                <dd th:text="${club.managerName}">홍길동</dd>
+            </div>
+            <div style="grid-column:1 / -1">
+                <dt>설명</dt>
+                <dd th:text="${club.description}" style="white-space:pre-line; font-weight:600; color:#1F2937">소개</dd>
+            </div>
+            <div>
+                <dt>생성일</dt>
+                <dd th:text="${#temporals.format(club.createdDate, 'yyyy.MM.dd HH:mm')}">2025.11.04 12:00</dd>
+            </div>
+        </dl>
+
+        <div style="margin-top:20px; display:flex; gap:8px">
+            <a th:href="@{/clubs}" class="btn btn--ghost">← 목록으로</a>
+            <!-- TODO: 수정/삭제 버튼 자리 -->
+        </div>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: appFooter"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>새 클럽 만들기 | HappyClub</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: appHeader"></div>
+
+<main class="container" style="padding:40px 0 56px">
+    <div class="card" style="padding:20px">
+        <h1 style="margin:0; font-size:22px; font-weight:800">새 클럽 만들기</h1>
+        <div style="margin-top:6px; color:var(--ink-600)">필수 항목을 입력해 새 클럽을 등록하세요.</div>
+
+        <form th:action="@{/clubs}" th:object="${form}" method="post" class="form">
+            <input type="hidden" th:if="${_csrf!=null}" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div class="row">
+                <label class="label">동호회 이름 <span style="color:#DC2626">*</span></label>
+                <input th:field="*{clubName}" type="text" class="input" placeholder="예) 축구 동호회"/>
+                <div class="err" th:if="${#fields.hasErrors('clubName')}" th:errors="*{clubName}">에러</div>
+            </div>
+
+            <div class="row">
+                <label class="label">설명</label>
+                <textarea th:field="*{description}" rows="4" class="textarea" placeholder="클럽 소개를 입력하세요."></textarea>
+            </div>
+
+            <div class="row">
+                <label class="label">매니저 ID <span style="color:#DC2626">*</span></label>
+                <input th:field="*{managerId}" type="number" min="1" class="input" placeholder="예) 1"/>
+                <div class="err" th:if="${#fields.hasErrors('managerId')}" th:errors="*{managerId}">에러</div>
+            </div>
+
+            <div style="display:flex; gap:8px; margin-top:8px">
+                <button type="submit" class="btn btn--brand">생성</button>
+                <a th:href="@{/clubs}" class="btn btn--ghost">취소</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<div th:replace="fragments/footer :: appFooter"></div>
+</body>
+</html>
